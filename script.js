@@ -20,7 +20,7 @@ function calculateDifference() {
   const remainingDays = daysDiff % 30;
 
   // Adjust the number of days by subtracting the upper bound of (months / 2)
-  const adjustedDays = daysDiff - Math.floor(months / 2);
+  const adjustedDays = daysDiff - Math.ceil(months / 2);
 
   // Calculate the number of months and remaining days after adjustment
   const adjustedMonths = Math.floor(adjustedDays / 30);
