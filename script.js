@@ -13,7 +13,7 @@ function calculateDifference() {
   const timeDiff = endDate - startDate;
 
   // Convert the difference to days (adding +2 to count the start and end days)
-  let daysDiff = Math.floor(timeDiff / (1000 * 60 * 60 * 24)) + 1;
+  let daysDiff = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
 
   // Calculate the number of months and remaining days
   const months = Math.floor(daysDiff / 30);
