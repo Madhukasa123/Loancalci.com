@@ -9,53 +9,54 @@ function calculateDifference() {
   const interestRate = parseFloat(interestRateInput.value);
   const principalAmount = parseFloat(principalAmountInput.value);
 
-  // Calculate the difference in milliseconds
-  const timeDiff = endDate - startDate;
+  // Calculate the difference in months and remaining days
+  const startYear = startDate.getFullYear();
+  const endYear = endDate.getFullYear();
+  const startMonth = startDate.getMonth();
+  const endMonth = endDate.getMonth();
+  const startDay = startDate.getDate();
+  const endDay = endDate.getDate();
 
-  // Convert the difference to days (adding +2 to count the start and end days)
-  let daysDiff = Math.floor(timeDiff / (1000 * 60 * 60 * 24) + 2);
+  let monthsDiff = (endYear - startYear) * 12 + (endMonth - startMonth);
+  const daysDiff = endDay - startDay;
 
-  // Calculate the number of months and remaining days
-  const months = Math.floor(daysDiff / 30);
-  const remainingDays = daysDiff % 30;
+  // Adjust the months difference based on days
+  if (daysDiff < 0) {
+    monthsDiff--;
+  }
 
-  // Adjust the number of days by subtracting the upper bound of (months / 2)
-  const adjustedDays = daysDiff - Math.ceil(months / 2);
+  // Calculate the interest for complete months
+  const interestForCompleteMonths = (principalAmount * interestRate * monthsDiff) / 100;
 
-  // Calculate the number of months and remaining days after adjustment
-  const adjustedMonths = Math.floor(adjustedDays / 30);
-  const adjustedRemainingDays = adjustedDays % 30;
+  // Calculate the interest for remaining days
+  const interestForRemainingDays = (principalAmount * interestRate * Math.abs(daysDiff)) / (100 * 30);
 
-  // Calculate the interest for adjusted months and days
-  const interestForMonths = (principalAmount * interestRate * adjustedMonths) / 100;
-  const interestForDays = (principalAmount * interestRate * adjustedRemainingDays) / (100 * 30);
+  // Calculate the total interest by summing the interests for complete months and remaining days
+  const totalInterest = interestForCompleteMonths + interestForRemainingDays;
 
-  // Calculate the total interest by summing the interests for months and days
-  const totalInterest = interestForMonths + interestForDays;
+  // Format the dates in the desired output format
+  const formattedStartDate = startDate.toLocaleDateString(undefined, { month: 'long', day: 'numeric', year: 'numeric' });
+  const formattedEndDate = endDate.toLocaleDateString(undefined, { month: 'long', day: 'numeric', year: 'numeric' });
 
-  // Calculate the total amount including interest
-  const totalAmount = principalAmount + totalInterest;
+  // Prepare the output message
+  const outputMessage = `The given dates:
+Start Date: ${formattedStartDate}
+End Date: ${formattedEndDate}
 
-  // Calculate the starting day and ending day
-  const startingDay = startDate.toLocaleDateString(undefined, { weekday: 'long' });
-  const endingDay = endDate.toLocaleDateString(undefined, { weekday: 'long' });
+Difference:
+Months: ${monthsDiff} month(s)
+Days: ${Math.abs(daysDiff)} day(s)
+
+Interests:
+Interest for ${monthsDiff} month(s): ${interestForCompleteMonths.toFixed(2)}
+Interest for ${Math.abs(daysDiff)} day(s): ${interestForRemainingDays.toFixed(2)}
+
+Principle Amount: ${principalAmount.toFixed(2)}
+Total Interest: ${totalInterest.toFixed(2)}
+Total Amount: ${(principalAmount + totalInterest).toFixed(2)}`;
 
   const resultDiv = document.getElementById('result');
-  resultDiv.innerText = `Start Date: ${formatDate(startDate)} (${startingDay})
-    \nEnd Date: ${formatDate(endDate)} (${endingDay})
-    \nDifference: ${adjustedMonths} months and ${adjustedRemainingDays} days
-    \nPrincipal Amount: ${principalAmount}
-    \nInterest Rate per Month: ${interestRate}%
-    \nInterest for ${adjustedMonths} months: ${interestForMonths.toFixed(2)}
-    \nInterest for ${adjustedRemainingDays} days: ${interestForDays.toFixed(2)}
-    \nTotal Interest: ${totalInterest.toFixed(2)}
-    \nTotal Amount: ${totalAmount.toFixed(2)}`;
+  resultDiv.innerText = outputMessage;
 }
 
-function formatDate(date) {
-  const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, '0');
-  const day = String(date.getDate()).padStart(2, '0');
-  return `${year}-${month}-${day}`;
-}
 
