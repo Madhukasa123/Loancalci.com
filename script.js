@@ -34,29 +34,43 @@ function calculateDifference() {
   // Calculate the total interest by summing the interests for complete months and remaining days
   const totalInterest = interestForCompleteMonths + interestForRemainingDays;
 
-  // Format the dates in the desired output format
-  const formattedStartDate = startDate.toLocaleDateString(undefined, { month: 'long', day: 'numeric', year: 'numeric' });
-  const formattedEndDate = endDate.toLocaleDateString(undefined, { month: 'long', day: 'numeric', year: 'numeric' });
+  // Telugu month names array
+  const teluguMonthNames = [
+    'జనవరి',
+    'ఫిబ్రవరి',
+    'మార్చి',
+    'ఏప్రిల్',
+    'మే',
+    'జూన్',
+    'జూలై',
+    'ఆగస్టు',
+    'సెప్టెంబర్',
+    'అక్టోబర్',
+    'నవంబర్',
+    'డిసెంబర్'
+  ];
 
-  // Prepare the output message
-  const outputMessage = `The given dates:
-Start Date: ${formattedStartDate}
-End Date: ${formattedEndDate}
+  // Format the dates with Telugu month names
+  const formattedStartDate = `${startDate.getDate()} ${teluguMonthNames[startMonth]} ${startDate.getFullYear()}`;
+  const formattedEndDate = `${endDate.getDate()} ${teluguMonthNames[endMonth]} ${endDate.getFullYear()}`;
 
-Difference:
-Months: ${monthsDiff} month(s)
-Days: ${Math.abs(daysDiff)} day(s)
-
-Interests:
-Interest for ${monthsDiff} month(s): ${interestForCompleteMonths.toFixed(2)}
-Interest for ${Math.abs(daysDiff)} day(s): ${interestForRemainingDays.toFixed(2)}
-
-Principle Amount: ${principalAmount.toFixed(2)}
-Total Interest: ${totalInterest.toFixed(2)}
-Total Amount: ${(principalAmount + totalInterest).toFixed(2)}`;
-
+  // Prepare the output message in Telugu
+  const outputMessage = `ఇవ్వబడిన తేదీలు:
+  ప్రారంభ తేదీ: ${formattedStartDate}
+  ముగింపు తేదీ: ${formattedEndDate}
+  
+  తేడా:
+  ${monthsDiff} నెలల , ${Math.abs(daysDiff)}  రోజులు.
+  
+  వడ్డీ:
+  ${monthsDiff} నెలలకి వడ్డీ : ${ interestForCompleteMonths.toFixed(2)}
+  ${Math.abs(daysDiff)} రోజులకి వడ్డీ : ${ interestForRemainingDays.toFixed(2)}
+  
+  అసలు: ${principalAmount.toFixed(2)}
+  వడ్డీ: ${totalInterest.toFixed(2)}
+ 
+  మొత్తం: ${(principalAmount + totalInterest).toFixed(2)} /-`;
+  
   const resultDiv = document.getElementById('result');
   resultDiv.innerText = outputMessage;
 }
-
-
