@@ -19,7 +19,7 @@ body {
 
 h1 {
     text-align: center;
-    margin-top:10px;
+    margin-top:20px;
 }
 
 label {
@@ -48,7 +48,7 @@ button:hover {
 }
 
 #result {
-    margin-top: 15px;
+    margin-top: 20px;
     font-weight: bold;
     font-size: 24px; /* Set a larger font size for the output */
 }
