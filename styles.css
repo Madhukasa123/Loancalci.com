@@ -9,7 +9,7 @@ body {
     width: 100%;
     height: 100%;
     padding: 20px;
-    background-color: lightblue;
+    background-color: #fff;
     box-sizing: border-box; /* Include padding in the height calculation */
     display: flex;
     flex-direction: column;
@@ -46,12 +46,10 @@ button:hover {
     background-color: #0056b3;
 }
 
-
 #result {
     margin-top: 20px;
     font-weight: bold;
     font-size: 24px; /* Set a larger font size for the output */
-    flex-grow: 1; /* Make the #result element occupy the remaining height */
 }
 
 /* Set footer to fixed position at the bottom */
@@ -59,7 +57,4 @@ footer {
     background-color: #f0f0f0;
     padding: 10px;
     text-align: center;
-}
-.large-copyright {
-    font-size: 24px;
 }
