@@ -19,6 +19,7 @@ body {
 
 h1 {
     text-align: center;
+    margin-top:10px;
 }
 
 label {
@@ -29,9 +30,9 @@ label {
 input, button {
     display: block;
     width: 100%;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     padding: 10px; /* Increase padding to make the input boxes larger */
-    font-size: 16px; /* Increase font size for better readability */
+    font-size: 20px; /* Increase font size for better readability */
 }
 
 button {
@@ -47,7 +48,7 @@ button:hover {
 }
 
 #result {
-    margin-top: 20px;
+    margin-top: 15px;
     font-weight: bold;
     font-size: 24px; /* Set a larger font size for the output */
 }
