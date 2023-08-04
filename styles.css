@@ -1,6 +1,8 @@
 body {
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
 }
 
 .container {
@@ -9,6 +11,11 @@ body {
     padding: 20px;
     background-color: #fff;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+    min-height: 100vh; /* Set minimum height to full viewport height */
+    box-sizing: border-box; /* Include padding in the height calculation */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Push the footer to the bottom */
 }
 
 h1 {
@@ -24,6 +31,8 @@ input, button {
     display: block;
     width: 100%;
     margin-bottom: 15px;
+    padding: 10px; /* Increase padding to make the input boxes larger */
+    font-size: 16px; /* Increase font size for better readability */
 }
 
 button {
@@ -41,14 +50,4 @@ button:hover {
 #result {
     margin-top: 20px;
     font-weight: bold;
-}
-.large-copyright {
-    font-size: 24px;
-}
-/* Media query for smaller screens */
-@media (max-width: 600px) {
-    .container {
-        max-width: 100%;
-        margin: 10px;
-    }
 }
