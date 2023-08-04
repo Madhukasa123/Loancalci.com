@@ -52,9 +52,6 @@ button:hover {
     font-weight: bold;
     font-size: 24px; /* Set a larger font size for the output */
     flex-grow: 1; /* Make the #result element occupy the remaining height */
-    display: flex; /* Enable flexbox for #result */
-    align-items: center; /* Vertically center content */
-    justify-content: center; /* Horizontally center content */
 }
 
 /* Set footer to fixed position at the bottom */
