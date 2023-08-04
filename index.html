@@ -1,16 +1,25 @@
 <!DOCTYPE html>
-<html lang="te">
-
+<html lang="en">
 <head>
-  <title>అప్పు కాలిక్యులేటర్</title>
-  <link rel="icon" href="rupees-symbol-png-27191-Windows.ico" type="image/png">
-  <link rel="stylesheet" type="text/css" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Calculator</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
-  
-  <p>Not availabel</p>
+    <div class="container">
+        <h1>Loan Calculator</h1>
+        <label for="startDate">Start Date:</label>
+        <input type="date" id="startDate">
+        <label for="endDate">End Date:</label>
+        <input type="date" id="endDate">
+        <label for="interestRate">Interest Rate (per month %):</label>
+        <input type="number" id="interestRate" step="0.01">
+        <label for="principalAmount">Principal Amount:</label>
+        <input type="number" id="principalAmount">
+        <button onclick="calculateLoan()">Calculate</button>
+        <div id="result"></div>
+    </div>
+    <script src="script.js"></script>
 </body>
-
 </html>
-
