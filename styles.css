@@ -46,10 +46,14 @@ button:hover {
     background-color: #0056b3;
 }
 
+
 #result {
     margin-top: 20px;
     font-weight: bold;
+    font-size: 24px; /* Set a larger font size for the output */
+    flex-grow: 1; /* Make the #result element occupy the remaining height */
 }
+
 
 /* Set footer to fixed position at the bottom */
 footer {
