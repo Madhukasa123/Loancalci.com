@@ -7,9 +7,9 @@ body {
 
 .container {
     width: 50%;
-    height: 60%;
+    height: 50%;
     padding: 20px;
-    background-color: #fff;
+    background-color: lightblue;
     box-sizing: border-box; /* Include padding in the height calculation */
     display: flex;
     flex-direction: column;
