@@ -45,3 +45,10 @@ button:hover {
 .large-copyright {
     font-size: 24px;
 }
+/* Media query for smaller screens */
+@media (max-width: 600px) {
+    .container {
+        max-width: 100%;
+        margin: 10px;
+    }
+}
