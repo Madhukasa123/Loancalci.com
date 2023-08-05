@@ -48,7 +48,7 @@ button:hover {
 }
 
 #result {
-    margin-top: 100px;
+    margin-top: 50px;
     font-weight: bold;
     font-size: 24px; /* Set a larger font size for the output */
 }
