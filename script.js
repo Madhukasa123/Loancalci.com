@@ -26,9 +26,9 @@ function calculateLoan() {
 
     const resultDiv = document.getElementById("result");
     resultDiv.innerHTML = `
-        Number of Months: ${numMonths}<br>
-        Number of Days: ${numDays}<br>
-        Interest: ${totalInterest.toFixed(2)}<br>
+        Number of Months: ${numMonths}<be><br>
+        Number of Days: ${numDays}<br><br>
+        Interest: ${totalInterest.toFixed(2)}<br><br>
         Total Amount: ${totalAmount.toFixed(2)}
     `;
 }
