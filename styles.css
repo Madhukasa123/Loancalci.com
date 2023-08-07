@@ -59,3 +59,15 @@ footer {
     text-align: center;
     margin:0;
 }
+/* Your existing CSS styles go here */
+
+/* Additional styles for ad container */
+.ad-container {
+    max-width: 300px;
+    margin: 20px auto;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
