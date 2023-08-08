@@ -5,7 +5,7 @@ function calculateLoan() {
     const principalAmount = parseFloat(document.getElementById("principalAmount").value);
 
     if (isNaN(interestRate) || isNaN(principalAmount)) {
-        alert("Please enter valid numbers for interest rate and principal amount.");
+        alert("దయచేసి వడ్డీ రేటు మరియు అసలు మొత్తం కోసం చెల్లుబాటు అయ్యే నంబర్‌లను నమోదు చేయండి.");
         return;
     }
 
