@@ -26,7 +26,6 @@ function calculateLoan() {
 
     const resultDiv = document.getElementById("result");
     resultDiv.innerHTML = `
-    <br><br>
         ${numMonths} నెలల ${numDays} రోజులు <br><br><hr>
         వడ్డీ: ${totalInterest.toFixed(2)}<br><br>
         మొత్తం: ${totalAmount.toFixed(2)} <br><br>
