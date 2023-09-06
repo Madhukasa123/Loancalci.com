@@ -31,7 +31,7 @@ label {
 input, button {
     display: block;
     width: 100%;
-    padding: 30px; /* Increase padding to make the input boxes larger */
+    padding: 10px; /* Increase padding to make the input boxes larger */
     font-size: 26px; /* Increase font size for better readability */
 }
 
