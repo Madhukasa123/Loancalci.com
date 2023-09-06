@@ -24,14 +24,15 @@ h1 {
 
 label {
     display: block;
+    font-size:26px; 
     
 }
 
 input, button {
     display: block;
     width: 100%;
-    padding: 40px; /* Increase padding to make the input boxes larger */
-    font-size: 50px; /* Increase font size for better readability */
+    padding: 30px; /* Increase padding to make the input boxes larger */
+    font-size: 26px; /* Increase font size for better readability */
 }
 
 button {
@@ -49,7 +50,7 @@ button:hover {
 
 #result {
     font-weight: bold;
-    font-size: 50px; /* Set a larger font size for the output */
+    font-size: 32px; /* Set a larger font size for the output */
 }
 
 /* Set footer to fixed position at the bottom */
