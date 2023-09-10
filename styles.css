@@ -17,7 +17,8 @@ body {
     overflow-y: auto; /* Add scrollbar if content overflows */
 }
 
-h1 {
+h1 , a{
+    text-align: center;
     text-align: center;
    
 }
