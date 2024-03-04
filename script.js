@@ -8,6 +8,28 @@ function calculateLoan() {
         alert("దయచేసి వడ్డీ రేటు మరియు అసలు మొత్తం కోసం చెల్లుబాటు అయ్యే నంబర్‌లను నమోదు చేయండి.");
         return;
     }
+     // Telugu month names
+    const teluguMonths = [
+        "జనవరి",
+        "ఫిబ్రవరి",
+        "మార్చి",
+        "ఏప్రిల్",
+        "మే",
+        "జూన్",
+        "జూలై",
+        "ఆగస్టు",
+        "సెప్టెంబర్",
+        "అక్టోబర్",
+        "నవంబర్",
+        "డిసెంబర్"
+    ];
+     // Function to format the date
+    const formatDate = (date) => {
+        const day = date.getDate();
+        const month = teluguMonths[date.getMonth()];
+        const year = date.getFullYear();
+        return `${day} తారీఖు, ${month} ${year}`;
+    };
 
     // Calculate the difference in months and days
     const diffMonths = (endDate.getFullYear() - startDate.getFullYear()) * 12 + (endDate.getMonth() - startDate.getMonth());
@@ -26,6 +48,7 @@ function calculateLoan() {
 
     const resultDiv = document.getElementById("result");
     resultDiv.innerHTML = `
+        ${formatDate(startDate)} --నుండి-- ${formatDate(endDate)} వరకు<hr>
         ${numMonths} నెలల ${numDays} రోజులు<hr>
         వడ్డీ: &#x20B9;${totalInterest.toFixed(2)}<br>
         మొత్తం: &#x20B9;${totalAmount.toFixed(2)}
