@@ -28,7 +28,7 @@ function calculateLoan() {
         const day = date.getDate();
         const month = teluguMonths[date.getMonth()];
         const year = date.getFullYear();
-        return `${day} తారీఖు, ${month} ${year}`;
+        return `${day} ${month} ${year}`;
     };
 
     // Calculate the difference in months and days
