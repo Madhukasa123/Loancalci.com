@@ -50,7 +50,7 @@ function calculateLoan() {
     resultDiv.innerHTML = `
         ${formatDate(startDate)} --నుండి-- ${formatDate(endDate)} వరకు<hr>
         ${numMonths} నెలల ${numDays} రోజులు<hr>
-        వడ్డీ: &#x20B9;${totalInterest.toFixed(2)}<br>
+        వడ్డీ: &#x20B9;${totalInterest.toFixed(2)}<hr>
         మొత్తం: &#x20B9;${totalAmount.toFixed(2)}
     `;
 }
