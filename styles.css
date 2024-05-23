@@ -9,7 +9,7 @@ body {
             color: blue; /* Optional: sets link color to blue */
         }
 .calci {
-    display: inline-block; /* Allows height and width properties to take effect */
+    display: flex; /* Allows height and width properties to take effect */
     background-color: green; /* Sets the background color */
     padding: 10px; /* Adds padding around the text */
     text-align: center; /* Centers text horizontally */
