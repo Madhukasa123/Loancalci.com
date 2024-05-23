@@ -20,8 +20,8 @@ body {
 /* Optional: Additional styles for the link and heading */
 .calci a {
     text-decoration: none; /* Removes underline from the link */
-    color: violet; /* Sets the link text color to white for better contrast */
-    background-color: aqua; 
+    color: white; /* Sets the link text color to white for better contrast */
+    background-color: blue; 
 }
 
 .calci h2 {
