@@ -9,8 +9,8 @@ body {
             position: absolute;
             top: 10px; /* Adjust as needed */
             right: 10px; /* Adjust as needed */
-            width: 32px; /* Size of the favicon */
-            height: 32px; /* Size of the favicon */
+            width: 64px; /* Size of the favicon */
+            height: 64px; /* Size of the favicon */
         }
  a {
             text-decoration: none; /* Removes underline from links */
