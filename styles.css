@@ -8,8 +8,10 @@ body {
             text-decoration: none; /* Removes underline from links */
             color: blue; /* Optional: sets link color to blue */
         }
-#bt-1{
-    background-color:green;
+.calci{
+    display: inline;
+    background-color: green;
+    height:10px;
     
 }
 .container {
