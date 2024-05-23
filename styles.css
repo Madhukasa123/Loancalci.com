@@ -4,6 +4,14 @@ body {
     margin: 0;
     padding: 0;
 }
+        /* Inline styles for positioning the favicon */
+        .top-right-favicon {
+            position: absolute;
+            top: 10px; /* Adjust as needed */
+            right: 10px; /* Adjust as needed */
+            width: 32px; /* Size of the favicon */
+            height: 32px; /* Size of the favicon */
+        }
  a {
             text-decoration: none; /* Removes underline from links */
             color: blue; /* Optional: sets link color to blue */
