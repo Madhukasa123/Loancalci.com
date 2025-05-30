@@ -6,7 +6,7 @@
     storageBucket: "authentication-1682e.firebasestorage.app",
     messagingSenderId: "127269483678",
     appId: "1:127269483678:web:9c27ad9f3005b71d41f78f",
-    measurementId: "G-G2PL249YJY"
+    measurementId: "G-G2PL249YJY",
   };
 
 // Initialize Firebase
