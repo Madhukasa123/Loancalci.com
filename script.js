@@ -1,13 +1,14 @@
 // Firebase config — Replace with your project's config from Firebase Console
  const firebaseConfig = {
-    apiKey: "AIzaSyBkEW0B3IWItEwzcKRwEBAMJEWq9afka3k",
-    authDomain: "authentication-1682e.firebaseapp.com",
-    projectId: "authentication-1682e",
-    storageBucket: "authentication-1682e.firebasestorage.app",
-    messagingSenderId: "127269483678",
-    appId: "1:127269483678:web:9c27ad9f3005b71d41f78f",
-    measurementId: "G-G2PL249YJY",
-  };
+  apiKey: "AIzaSyBkEW0B3IWItEwzcKRwEBAMJEWq9afka3k",
+  authDomain: "authentication-1682e.firebaseapp.com",
+  projectId: "authentication-1682e",
+  storageBucket: "authentication-1682e.appspot.com",
+  messagingSenderId: "127269483678",
+  appId: "1:127269483678:web:9c27ad9f3005b71d41f78f",
+  measurementId: "G-G2PL249YJY",
+};
+
 
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
