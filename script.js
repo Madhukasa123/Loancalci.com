@@ -1,11 +1,19 @@
 function calculateLoan() {
-    const startDate = parseSlashDate(document.getElementById("startDate").value);
-    const endDate = parseSlashDate(document.getElementById("endDate").value);
+    const startInput = document.getElementById("startDate").value;
+    const endInput = document.getElementById("endDate").value;
     const interestRate = parseFloat(document.getElementById("interestRate").value);
     const principalAmount = parseFloat(document.getElementById("principalAmount").value);
 
-    if (!startDate || !endDate || isNaN(interestRate) || isNaN(principalAmount)) {
-        alert("దయచేసి సరైన తేదీలు, వడ్డీ రేటు మరియు అసలు మొత్తం నమోదు చేయండి.");
+    const startDate = parseDDMMYYYY(startInput);
+    const endDate = parseDDMMYYYY(endInput);
+
+    if (!startDate || !endDate) {
+        alert("తప్పు తేది. దయచేసి DDMMYYYY ఫార్మాట్‌లో సరైన తేది నమోదు చేయండి.");
+        return;
+    }
+
+    if (isNaN(interestRate) || isNaN(principalAmount)) {
+        alert("దయచేసి వడ్డీ రేటు మరియు అసలు మొత్తం కోసం చెల్లుబాటు అయ్యే నంబర్‌లను నమోదు చేయండి.");
         return;
     }
 
@@ -42,33 +50,21 @@ function calculateLoan() {
     `;
 }
 
-// 🧠 Parse MM/DD/YYYY into Date object
-function parseSlashDate(dateStr) {
-    const parts = dateStr.split('/');
-    if (parts.length !== 3) return null;
+// ✅ Parse DDMMYYYY format
+function parseDDMMYYYY(input) {
+    const raw = input.replace(/\D/g, "");
+    if (raw.length !== 8) return null;
 
-    const [mm, dd, yyyy] = parts.map(p => parseInt(p));
-    if (isNaN(mm) || isNaN(dd) || isNaN(yyyy)) return null;
+    const dd = parseInt(raw.slice(0, 2));
+    const mm = parseInt(raw.slice(2, 4));
+    const yyyy = parseInt(raw.slice(4, 8));
+
+    if (isNaN(dd) || isNaN(mm) || isNaN(yyyy)) return null;
+    if (mm < 1 || mm > 12 || dd < 1 || dd > 31) return null;
 
     const date = new Date(yyyy, mm - 1, dd);
-    return isNaN(date.getTime()) ? null : date;
+    // Validate: Make sure the date is really the same as user input
+    if (date.getDate() !== dd || date.getMonth() !== mm - 1 || date.getFullYear() !== yyyy) return null;
+
+    return date;
 }
-
-// 🎯 Auto-format as MM/DD/YYYY while typing
-function formatDateInput(input) {
-    input.addEventListener('input', () => {
-        let value = input.value.replace(/\D/g, '').slice(0, 8);
-
-        let formatted = '';
-        if (value.length > 0) formatted += value.slice(0, 2);
-        if (value.length >= 3) formatted += '/' + value.slice(2, 4);
-        if (value.length >= 5) formatted += '/' + value.slice(4, 8);
-
-        input.value = formatted;
-    });
-}
-
-window.addEventListener('DOMContentLoaded', () => {
-    formatDateInput(document.getElementById('startDate'));
-    formatDateInput(document.getElementById('endDate'));
-});
