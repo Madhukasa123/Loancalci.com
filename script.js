@@ -1,16 +1,11 @@
 function calculateLoan() {
-    const startDateString = document.getElementById("startDate").value;
-    const endDateString = document.getElementById("endDate").value;
-
-    // Convert MM/DD/YYYY to Date
-    const startDate = new Date(startDateString);
-    const endDate = new Date(endDateString);
-
+    const startDate = parseSlashDate(document.getElementById("startDate").value);
+    const endDate = parseSlashDate(document.getElementById("endDate").value);
     const interestRate = parseFloat(document.getElementById("interestRate").value);
     const principalAmount = parseFloat(document.getElementById("principalAmount").value);
 
-    if (isNaN(interestRate) || isNaN(principalAmount)) {
-        alert("దయచేసి వడ్డీ రేటు మరియు అసలు మొత్తం కోసం చెల్లుబాటు అయ్యే నంబర్‌లను నమోదు చేయండి.");
+    if (!startDate || !endDate || isNaN(interestRate) || isNaN(principalAmount)) {
+        alert("దయచేసి సరైన తేదీలు, వడ్డీ రేటు మరియు అసలు మొత్తం నమోదు చేయండి.");
         return;
     }
 
@@ -47,12 +42,22 @@ function calculateLoan() {
     `;
 }
 
-// 🆕 Slash-Formatting Date Input (MM/DD/YYYY)
+// 🧠 Parse MM/DD/YYYY into Date object
+function parseSlashDate(dateStr) {
+    const parts = dateStr.split('/');
+    if (parts.length !== 3) return null;
+
+    const [mm, dd, yyyy] = parts.map(p => parseInt(p));
+    if (isNaN(mm) || isNaN(dd) || isNaN(yyyy)) return null;
+
+    const date = new Date(yyyy, mm - 1, dd);
+    return isNaN(date.getTime()) ? null : date;
+}
+
+// 🎯 Auto-format as MM/DD/YYYY while typing
 function formatDateInput(input) {
     input.addEventListener('input', () => {
-        let value = input.value.replace(/\D/g, '');
-
-        if (value.length > 8) value = value.slice(0, 8); // limit to 8 digits
+        let value = input.value.replace(/\D/g, '').slice(0, 8);
 
         let formatted = '';
         if (value.length > 0) formatted += value.slice(0, 2);
