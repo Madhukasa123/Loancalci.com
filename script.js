@@ -1,6 +1,11 @@
 function calculateLoan() {
-    const startDate = new Date(document.getElementById("startDate").value);
-    const endDate = new Date(document.getElementById("endDate").value);
+    const startDateString = document.getElementById("startDate").value;
+    const endDateString = document.getElementById("endDate").value;
+
+    // Convert MM/DD/YYYY to Date
+    const startDate = new Date(startDateString);
+    const endDate = new Date(endDateString);
+
     const interestRate = parseFloat(document.getElementById("interestRate").value);
     const principalAmount = parseFloat(document.getElementById("principalAmount").value);
 
@@ -8,22 +13,12 @@ function calculateLoan() {
         alert("దయచేసి వడ్డీ రేటు మరియు అసలు మొత్తం కోసం చెల్లుబాటు అయ్యే నంబర్‌లను నమోదు చేయండి.");
         return;
     }
-     // Telugu month names
+
     const teluguMonths = [
-        "జనవరి",
-        "ఫిబ్రవరి",
-        "మార్చి",
-        "ఏప్రిల్",
-        "మే",
-        "జూన్",
-        "జూలై",
-        "ఆగస్టు",
-        "సెప్టెంబర్",
-        "అక్టోబర్",
-        "నవంబర్",
-        "డిసెంబర్"
+        "జనవరి", "ఫిబ్రవరి", "మార్చి", "ఏప్రిల్", "మే", "జూన్",
+        "జూలై", "ఆగస్టు", "సెప్టెంబర్", "అక్టోబర్", "నవంబర్", "డిసెంబర్"
     ];
-     // Function to format the date
+
     const formatDate = (date) => {
         const day = date.getDate();
         const month = teluguMonths[date.getMonth()];
@@ -31,19 +26,16 @@ function calculateLoan() {
         return `${day} ${month} ${year}`;
     };
 
-    // Calculate the difference in months and days
-    const diffMonths = (endDate.getFullYear() - startDate.getFullYear()) * 12 + (endDate.getMonth() - startDate.getMonth());
+    const diffMonths = (endDate.getFullYear() - startDate.getFullYear()) * 12 +
+                       (endDate.getMonth() - startDate.getMonth());
     const diffDays = endDate.getDate() - startDate.getDate();
 
-    // Adjust the number of months based on the remaining days
     const numMonths = diffDays >= 0 ? diffMonths : diffMonths - 1;
     const numDays = diffDays >= 0 ? diffDays : 30 + diffDays;
 
-    // Calculate interest for full months and additional days
     const interestForMonths = (interestRate / 100) * principalAmount * numMonths;
     const interestForDays = (interestRate / 100 / 30) * principalAmount * numDays;
     const totalInterest = interestForMonths + interestForDays;
-
     const totalAmount = principalAmount + totalInterest;
 
     const resultDiv = document.getElementById("result");
@@ -54,3 +46,24 @@ function calculateLoan() {
         మొత్తం: &#x20B9;${totalAmount.toFixed(2)}
     `;
 }
+
+// 🆕 Slash-Formatting Date Input (MM/DD/YYYY)
+function formatDateInput(input) {
+    input.addEventListener('input', () => {
+        let value = input.value.replace(/\D/g, '');
+
+        if (value.length > 8) value = value.slice(0, 8); // limit to 8 digits
+
+        let formatted = '';
+        if (value.length > 0) formatted += value.slice(0, 2);
+        if (value.length >= 3) formatted += '/' + value.slice(2, 4);
+        if (value.length >= 5) formatted += '/' + value.slice(4, 8);
+
+        input.value = formatted;
+    });
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+    formatDateInput(document.getElementById('startDate'));
+    formatDateInput(document.getElementById('endDate'));
+});
