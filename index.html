@@ -1,31 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>కాలిక్యులేటర్</title>
-    <link rel="icon" href="rupees-symbol-png-27191-Windows.ico" type="image/x-icon">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="rupees-symbol-png-27191-Windows.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="styles.css" />
+    
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
 </head>
 <body>
 
-        <h1 style="text-align:center">కాలిక్యులేటర్</h1>
-        <img src="madhu.gif" alt="Favicon" class="top-right-favicon">
-        <div  class="calci" ><a href="calci/calci.html"><h2>Calculator</h2></a></div>
-        <div class="container">
+    <h1 style="text-align:center">కాలిక్యులేటర్</h1>
+    <img src="madhu.gif" alt="Favicon" class="top-right-favicon" />
+    <div class="calci"><a href="calci/calci.html"><h2>Calculator</h2></a></div>
+
+    <!-- Firebase Auth Buttons -->
+    <div style="text-align:center; margin:20px;">
+      <button id="signInBtn">Google Sign In</button>
+      <button id="signOutBtn" style="display:none;">Sign Out</button>
+      <div id="userDetails" style="margin-top:10px;"></div>
+    </div>
+
+    <div class="container">
         <label for="startDate"><b>ప్రారంబపు తేది:</b></label>
-        <input type="text" id="startDate" placeholder="MM/DD/YYYY">
+        <input type="text" id="startDate" placeholder="DDMMYYYY" />
         <label for="endDate"><b>ఆఖరి తేది:</b></label>
-        <input type="text" id="endDate" placeholder="MM/DD/YYYY">
+        <input type="text" id="endDate" placeholder="DDMMYYYY" />
         <label for="interestRate"><b>రూపాయల వడ్డీ(నెల ఒక్కంటికి): &#x20B9;</b></label>
-        <input type="number" id="interestRate" step="0.01">
+        <input type="number" id="interestRate" step="0.01" />
         <label for="principalAmount"><b>అసలు: &#x20B9;</b></label>
-        <input type="number" id="principalAmount">
+        <input type="number" id="principalAmount" />
         <button onclick="calculateLoan()">లెక్కించు</button>
-        <br>
+        <br />
         <div id="result"></div>
     </div>
+
+    <button onclick="window.print()" style="color:Red">Print</button>
+
     <script src="script.js"></script>
-    <button onclick="window.print()" style = "color:Red">Print</button>
 </body>
 </html>
