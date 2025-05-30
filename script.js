@@ -1,3 +1,63 @@
+// Firebase config — Replace with your project's config from Firebase Console
+const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+    projectId: "YOUR_PROJECT_ID",
+    // ... other config fields if needed
+};
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+const provider = new firebase.auth.GoogleAuthProvider();
+
+const signInBtn = document.getElementById("signInBtn");
+const signOutBtn = document.getElementById("signOutBtn");
+const userDetailsDiv = document.getElementById("userDetails");
+
+// Sign in with Google
+signInBtn.addEventListener("click", () => {
+    auth.signInWithPopup(provider)
+        .then((result) => {
+            const user = result.user;
+            displayUser(user);
+        })
+        .catch((error) => {
+            alert("Sign-in failed: " + error.message);
+        });
+});
+
+// Sign out
+signOutBtn.addEventListener("click", () => {
+    auth.signOut().then(() => {
+        userDetailsDiv.innerHTML = "";
+        signInBtn.style.display = "inline-block";
+        signOutBtn.style.display = "none";
+    });
+});
+
+// On auth state change (page load or sign-in/out)
+auth.onAuthStateChanged((user) => {
+    if (user) {
+        displayUser(user);
+    } else {
+        userDetailsDiv.innerHTML = "";
+        signInBtn.style.display = "inline-block";
+        signOutBtn.style.display = "none";
+    }
+});
+
+function displayUser(user) {
+    userDetailsDiv.innerHTML = `
+        <p>Welcome, ${user.displayName}!</p>
+        <p>Email: ${user.email}</p>
+        <img src="${user.photoURL}" alt="Profile Photo" width="80" style="border-radius:50%;" />
+    `;
+    signInBtn.style.display = "none";
+    signOutBtn.style.display = "inline-block";
+}
+
+// Your existing loan calculator function and helpers
 function calculateLoan() {
     const startInput = document.getElementById("startDate").value.trim();
     const endInput = document.getElementById("endDate").value.trim();
@@ -64,7 +124,6 @@ function parseDDMMYYYY(input) {
     if (mm < 1 || mm > 12 || dd < 1 || dd > 31) return null;
 
     const date = new Date(yyyy, mm - 1, dd);
-    // Check if date matches user input (handles invalid dates like 31 Feb)
     if (date.getFullYear() !== yyyy || date.getMonth() !== mm - 1 || date.getDate() !== dd) return null;
 
     return date;
