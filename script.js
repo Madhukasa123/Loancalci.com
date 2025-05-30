@@ -1,19 +1,22 @@
 function calculateLoan() {
-    const startInput = document.getElementById("startDate").value;
-    const endInput = document.getElementById("endDate").value;
+    const startInput = document.getElementById("startDate").value.trim();
+    const endInput = document.getElementById("endDate").value.trim();
     const interestRate = parseFloat(document.getElementById("interestRate").value);
     const principalAmount = parseFloat(document.getElementById("principalAmount").value);
 
     const startDate = parseDDMMYYYY(startInput);
     const endDate = parseDDMMYYYY(endInput);
 
-    if (!startDate || !endDate) {
-        alert("తప్పు తేది. దయచేసి DDMMYYYY ఫార్మాట్‌లో సరైన తేది నమోదు చేయండి.");
+    if (!startDate) {
+        alert("ప్రారంభ తేదీ తప్పు ఉంది. దయచేసి DDMMYYYY ఫార్మాట్‌లో సరైన తేదీని నమోదు చేయండి.");
         return;
     }
-
+    if (!endDate) {
+        alert("ముగింపు తేదీ తప్పు ఉంది. దయచేసి DDMMYYYY ఫార్మాట్‌లో సరైన తేదీని నమోదు చేయండి.");
+        return;
+    }
     if (isNaN(interestRate) || isNaN(principalAmount)) {
-        alert("దయచేసి వడ్డీ రేటు మరియు అసలు మొత్తం కోసం చెల్లుబాటు అయ్యే నంబర్‌లను నమోదు చేయండి.");
+        alert("దయచేసి వడ్డీ రేటు మరియు అసలు మొత్తం చెల్లుబాటు అయ్యే సంఖ్యలుగా నమోదు చేయండి.");
         return;
     }
 
@@ -22,15 +25,14 @@ function calculateLoan() {
         "జూలై", "ఆగస్టు", "సెప్టెంబర్", "అక్టోబర్", "నవంబర్", "డిసెంబర్"
     ];
 
-    const formatDate = (date) => {
+    function formatDate(date) {
         const day = date.getDate();
         const month = teluguMonths[date.getMonth()];
         const year = date.getFullYear();
         return `${day} ${month} ${year}`;
-    };
+    }
 
-    const diffMonths = (endDate.getFullYear() - startDate.getFullYear()) * 12 +
-                       (endDate.getMonth() - startDate.getMonth());
+    const diffMonths = (endDate.getFullYear() - startDate.getFullYear()) * 12 + (endDate.getMonth() - startDate.getMonth());
     const diffDays = endDate.getDate() - startDate.getDate();
 
     const numMonths = diffDays >= 0 ? diffMonths : diffMonths - 1;
@@ -50,21 +52,20 @@ function calculateLoan() {
     `;
 }
 
-// ✅ Parse DDMMYYYY format
+// Parses DDMMYYYY string into Date object; returns null if invalid
 function parseDDMMYYYY(input) {
     const raw = input.replace(/\D/g, "");
     if (raw.length !== 8) return null;
 
-    const dd = parseInt(raw.slice(0, 2));
-    const mm = parseInt(raw.slice(2, 4));
-    const yyyy = parseInt(raw.slice(4, 8));
+    const dd = parseInt(raw.slice(0, 2), 10);
+    const mm = parseInt(raw.slice(2, 4), 10);
+    const yyyy = parseInt(raw.slice(4, 8), 10);
 
-    if (isNaN(dd) || isNaN(mm) || isNaN(yyyy)) return null;
     if (mm < 1 || mm > 12 || dd < 1 || dd > 31) return null;
 
     const date = new Date(yyyy, mm - 1, dd);
-    // Validate: Make sure the date is really the same as user input
-    if (date.getDate() !== dd || date.getMonth() !== mm - 1 || date.getFullYear() !== yyyy) return null;
+    // Check if date matches user input (handles invalid dates like 31 Feb)
+    if (date.getFullYear() !== yyyy || date.getMonth() !== mm - 1 || date.getDate() !== dd) return null;
 
     return date;
 }
